@@ -14,6 +14,9 @@ class ProjectBase(BaseModel):
     overview: str
     deployment: str
 
+class ProjectOut_Issues(ProjectBase):
+    id: int
+
 class ProjectOut(ProjectBase):
     id: int
 
@@ -37,3 +40,16 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     id: Optional[int]
+
+class IssueBase(BaseModel):
+    label: str
+    priority: int
+    status: str
+
+class IssueOut(IssueBase):
+    id: int
+    owner: UserOut
+    project: ProjectOut_Issues
+
+class IssueCreate(IssueBase):
+    project_id: int

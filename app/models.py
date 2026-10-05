@@ -34,6 +34,7 @@ class Issue(Base):
         ForeignKey("projects.id", ondelete="CASCADE"),
         nullable=False
     )
+    owner = relationship("User", back_populates="issues")
     project = relationship("Project", back_populates="issues")
 
 
@@ -46,3 +47,4 @@ class User(Base):
     created_at = Column(TIMESTAMP(timezone=True), server_default=func.now(), nullable=False)
 
     projects = relationship("Project", back_populates="owner")
+    issues = relationship("Issue", back_populates="owner")
