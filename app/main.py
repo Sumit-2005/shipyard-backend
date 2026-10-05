@@ -1,10 +1,10 @@
 from fastapi import FastAPI
-from .routers import user, auth
+from .routers import user, auth, project
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-origins = ["https://sumit-social.vercel.app"]
+origins = ["http://localhost:5173"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -14,6 +14,7 @@ app.add_middleware(
     allow_headers=["*"], 
 )
 
+app.include_router(project.router)
 app.include_router(user.router)
 app.include_router(auth.router)
 

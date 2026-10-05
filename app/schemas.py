@@ -10,6 +10,19 @@ class UserOut(BaseModel):
     class Config:
         orm_mode = True
 
+class ProjectBase(BaseModel):
+    overview: str
+    deployment: str
+
+class ProjectOut(ProjectBase):
+    id: int
+
+    owner: UserOut
+
+
+class ProjectCreate(ProjectBase):
+    pass
+
 class UserCreate(BaseModel):
     email:EmailStr
     password:str
